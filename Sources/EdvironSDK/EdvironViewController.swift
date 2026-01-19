@@ -61,7 +61,7 @@ public class EdvironViewController: UIViewController, WKNavigationDelegate {
 
     private func loadPaymentPage() {
         let prefix = mode == .production ? "pg" : "dev.pg"
-        let urlString = "https://\(prefix).edviron.com/collect-sdk-payments?collect_id=\(collectRequestId)"
+        let urlString = "https://\(prefix).edviron.in/collect-sdk-payments?collect_id=\(collectRequestId)"
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
             webView.load(request)
@@ -86,12 +86,12 @@ public class EdvironViewController: UIViewController, WKNavigationDelegate {
         let urlString = url.absoluteString
         print("Navigating to: \(urlString)")
         
-        if urlString.contains("pg.edviron.com/payment-success") {
+        if urlString.contains("pg.edviron.in/payment-success") {
             onSuccess?()
             self.navigationController?.popViewController(animated: true)
             decisionHandler(.cancel)
             return
-        } else if urlString.contains("pg.edviron.com/payment-failure") {
+        } else if urlString.contains("pg.edviron.in/payment-failure") {
             onError?()
             self.navigationController?.popViewController(animated: true)
             decisionHandler(.cancel)
